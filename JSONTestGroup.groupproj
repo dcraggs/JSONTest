@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C1D722D0-CF3C-417F-A0E9-62FEFE78A0E6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="JSONTest.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="JSONTestClient.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="JSONTest">
+        <MSBuild Projects="JSONTest.dproj"/>
+    </Target>
+    <Target Name="JSONTest:Clean">
+        <MSBuild Projects="JSONTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="JSONTest:Make">
+        <MSBuild Projects="JSONTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="JSONTestClient">
+        <MSBuild Projects="JSONTestClient.dproj"/>
+    </Target>
+    <Target Name="JSONTestClient:Clean">
+        <MSBuild Projects="JSONTestClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="JSONTestClient:Make">
+        <MSBuild Projects="JSONTestClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="JSONTest;JSONTestClient"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="JSONTest:Clean;JSONTestClient:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="JSONTest:Make;JSONTestClient:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
